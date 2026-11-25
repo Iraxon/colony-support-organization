@@ -36,12 +36,28 @@ def intro() -> str:
 
 
 username = intro()
+tasks = (("RECORD WEATHER DATA", weather_task),)
 while True:
     # Main menu
-    print_line_sequence(("TO-DO:" "", "1 :: RECORD WEATHER DATA", ""))
-    _ = validated_input(
-        "ENTER A TASK NUMBER TO PROCEED",
-        lambda s: len(s) == 1 and s.isnumeric() and int(s) == 1,
+    print_line_sequence(
+        (
+            "TO-DO:",
+            "",
+            *(
+                f"{i + 1} :: {task_description}"
+                for i, (task_description, _) in enumerate(tasks)
+            ),
+            "",
+        )
+    )
+    task_index = (
+        int(
+            validated_input(
+                "ENTER A TASK NUMBER TO PROCEED",
+                lambda s: len(s) == 1 and s.isnumeric() and 0 < int(s) <= len(tasks),
+            )
+        )
+        - 1
     )
     sleep(1)
     print("TASK SELECTED")
@@ -50,4 +66,6 @@ while True:
     print_loading_ellipsis()
     print("CONNECTED")
     press_enter_to_continue()
-    weather_task(1.0)
+
+    _, task_subroutine = tasks[task_index]
+    task_subroutine()

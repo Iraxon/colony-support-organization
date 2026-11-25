@@ -26,7 +26,7 @@ def weather_task(infohazard_chance: float = 0.05) -> TaskResult:
     infohazard = infohazard_chance > 0 and random() < infohazard_chance
 
     if infohazard:
-        return weather_infohazard()
+        return weather_task_fallback_connection()
 
     print_line_sequence(
         ("DATA RECEIVED", "", "CONTRIBUTING COLONIES: 35", "DATA SIZE: 17 KB", "")
@@ -52,7 +52,9 @@ def weather_task(infohazard_chance: float = 0.05) -> TaskResult:
     return result
 
 
-def weather_infohazard() -> TaskResult:
+# It is named like this for immersion in the traceback
+# when the game crashes itself for failed task
+def GOODBYE() -> TaskResult:
     print_line_sequence(
         ("DATA RECEIVED", "", "CONTRIBUTING COLONIES: 01", "DATA SiZE: 241 KL", "")
     )
@@ -86,3 +88,7 @@ def weather_infohazard() -> TaskResult:
         )
         press_enter_to_continue()
         return TaskResult.ANOMALY_STOPPED_BY_REPORT
+
+
+# More innocious alias to appear in the other part of the traceback
+weather_task_fallback_connection = GOODBYE
