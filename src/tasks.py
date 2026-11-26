@@ -74,6 +74,7 @@ def GOODBYE() -> TaskResult:
                 "No longer.",
             )
         )
+        sleep(3)
         raise ConnectionError(
             "The connection to the CSO Central Server was terminated: Server stopped responding."
         )
