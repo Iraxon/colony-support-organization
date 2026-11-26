@@ -17,7 +17,7 @@ def intro() -> str:
     username
     """
 
-    clear_terminal()  # Startup sequence
+    clear_terminal()
     print_line_sequence(
         (
             "",
