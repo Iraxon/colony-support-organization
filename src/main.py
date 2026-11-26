@@ -27,7 +27,7 @@ def intro() -> str:
         (
             "CHECKING DEVICE PASSKEY",
             *LOADING_ELLIPSIS,
-            ("DEVICE PASSKEY ACCEPED", f"WELCOME {username}"),
+            ("DEVICE PASSKEY ACCEPTED", f"WELCOME {username}"),
         )
     )
     press_enter_to_continue()
