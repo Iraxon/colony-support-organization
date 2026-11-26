@@ -29,7 +29,7 @@ def validated_input(
 def yes_no_input(prompt: str, user_input_prefix: str = "> ") -> bool:
     return (
         validated_input(
-            prompt, lambda b: b in frozenset({"y, n", "Y", "N"}), user_input_prefix
+            prompt, lambda b: b in frozenset({"y", "n", "Y", "N"}), user_input_prefix
         ).upper()
         == "Y"
     )
