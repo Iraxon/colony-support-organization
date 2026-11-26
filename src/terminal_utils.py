@@ -46,6 +46,12 @@ LOADING_ELLIPSIS = (".", "..", "...", "")
 def print_line_sequence(
     line_sequence: Iterable[str | Iterable[str]], trailing_sleep: bool = True
 ) -> None:
+    """
+    Print a sequence of lines, one at a time, with a 1 second delay between each line. No delay is
+    added for blank lines.
+
+    The sequence may also contain tuples of lines, which will be printed together without a delay.
+    """
     i = iter(line_sequence)
     print(next(i))
     for line in i:
